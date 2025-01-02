@@ -1,0 +1,28 @@
+class Solution{
+    int maxSubarraySum(int[] arr){
+        // if all elements are -ve, the max will not be 0 it will be -ve
+        boolean allnegative=true;
+        int maxallneg=arr[0];
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>0){
+                allnegative=false;
+            }
+            if(arr[i]>maxallneg){
+                maxallneg=arr[i];
+            }
+        }
+        if(allnegative){
+            return maxallneg;
+        }
+        int sum=0;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            if(sum<0){
+                sum=0;
+            }
+            max=Math.max(max,sum);
+        }
+        return max;
+    }
+}
