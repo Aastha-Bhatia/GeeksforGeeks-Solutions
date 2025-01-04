@@ -1,0 +1,50 @@
+class Solution{
+    Node addNode(Node head, int p, int x){
+        int count=0;
+        Node temp=head;
+        while(temp!=null){
+            if(count==p){
+                break;
+            }
+            temp=temp.next;
+            count++;
+        }
+        //  we are standing on temp and we need to inser element after it
+        // edge cases first
+        if(head==null){
+            return new Node(x);
+        }
+        Node back=temp.prev;
+        Node front=temp.next;
+        if(back==null){
+            // it means we are on the head and we need to insert element
+            // after head
+            // creating
+            Node newnode=new Node(x);
+            newnode.next=head.next;
+            newnode.prev=head;
+            head.next=newnode;
+            newnode.next.prev=newnode;
+            return head;
+        }
+        else if(front==null){
+            // it means we are on the tail of ll and we need to insert after tail
+            Node newnode=new Node(x);
+            newnode.next=null;
+            newnode.prev=temp;
+            temp.next=newnode;
+            return head;
+        }
+        else{
+            // it means we are somewhere at the middle and standing on temp.
+            // we have temp, back and front
+            // create
+            Node newnode=new Node(x);
+            newnode.next=front;
+            newnode.prev=temp;
+            temp.next=newnode;
+            newnode.next.prev=newnode;
+            return head;
+        }
+    }
+}
