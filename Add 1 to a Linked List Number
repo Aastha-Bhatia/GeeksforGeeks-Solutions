@@ -1,0 +1,25 @@
+/*class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data=x;
+        next=null;
+    }
+}*/
+class Solution{
+    public Node addOne(Node head){
+        Node temp=head;
+        if(head==null){
+            return null;
+        }
+        if(head.next==null){
+            head.data+=1;
+            return head;
+        }
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.data+=1;
+        return head;
+    }
+}
