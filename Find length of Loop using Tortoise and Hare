@@ -1,0 +1,31 @@
+// } Driver Code Ends
+/*class Node{
+    int data;
+    Node next;
+    Node(int d) {data=d; next=null; 
+    }
+}*/
+class Solution{
+    public int countlength(Node slow,Node fast){
+        int count=1;
+        fast=slow.next;
+        while(fast!=slow){
+            count++;
+            fast=fast.next;
+        }
+        return count;
+    }
+    public int countNodesinLoop(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(slow==fast){
+                // it means the loop exists
+                return countlength(slow,fast);
+            }
+        }
+        return 0;
+    }
+}
