@@ -1,0 +1,24 @@
+/*
+class Node{
+    int data;
+    Node next;
+    Node(int d) {data = d; next = null; }
+}
+*/
+class Solution{
+    public int countNodesinLoop(Node head){
+        Node temp=head;
+        int timer=1;
+        HashMap<Node,Integer> mpp=new HashMap<>();
+        while(temp!=null){
+            if(mpp.containsKey(temp)){
+                return timer-mpp.get(temp);
+            }
+            else{
+                mpp.put(temp,timer++);
+            }
+            temp=temp.next;
+        }
+        return 0;
+    }
+}
