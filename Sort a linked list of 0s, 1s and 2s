@@ -1,0 +1,29 @@
+/*class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        next=null;
+    }
+}*/
+class Solution{
+    static Node segregate(Node head){
+        List<Integer> list=new ArrayList<>();
+        Node temp=head;
+        while(temp!=null){
+            list.add(temp.data);
+            temp=temp.next;
+        }
+        // we have our list now.
+        // we will sort our list
+        Collections.sort(list);
+        head.data=list.get(0);
+        Node prev=head;
+        for(int i=1;i<list.size();i++){
+            Node newnode=new Node(list.get(i));
+            prev.next=newnode;
+            prev=prev.next;
+        }
+        return head;
+    }
+}
