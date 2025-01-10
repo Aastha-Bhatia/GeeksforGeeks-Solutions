@@ -10,8 +10,8 @@ class Node
 	    next = prev = null;
 	}
 }*/
-class Solution {
-    static Node deleteAllOccurOfX(Node head, int x) {
+class Solution{
+    static Node deleteAllOccurOfX(Node head, int x){
     //   1st case, when our head is x
     // we need to shift the head
     while(head!=null && head.data==x){
