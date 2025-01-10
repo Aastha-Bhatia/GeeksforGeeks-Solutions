@@ -1,1 +1,46 @@
-Delete all occurrences of a given key in a doubly linked list
+/* Structure of Doubly Linked List
+class Node
+{
+	int data;
+	Node next;
+	Node prev;
+	Node(int data)
+	{
+	    this.data = data;
+	    next = prev = null;
+	}
+}*/
+class Solution {
+    static Node deleteAllOccurOfX(Node head, int x) {
+    //   1st case, when our head is x
+    // we need to shift the head
+    while(head!=null && head.data==x){
+        head=head.next;
+        if(head!=null){
+                head.prev=null;
+            }
+        }
+    if(head==null) return null;
+    Node temp=head;
+      while(temp!=null){
+          if(temp.data==x){
+              Node previous=temp.prev;
+              Node forward=temp.next;
+              if(previous!=null){
+                previous.next=forward;
+              }
+              if(forward!=null){
+                  forward.prev=previous;
+              }
+              Node todelete=temp;
+              temp=temp.next;
+              todelete.next=null;
+              todelete.prev=null;
+          }
+          else{
+              temp=temp.next;
+          }
+      }
+      return head;
+    }
+}
