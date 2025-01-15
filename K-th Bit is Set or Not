@@ -1,0 +1,13 @@
+class CheckBit{
+    static boolean checkKthBit(int n, int k){
+        for(int i=0;i<32;i++){
+            if(i==k){
+                if(((n>>i)&1)==1){
+                    return true;
+                }
+            }
+        }
+    return false;
+        
+    }
+}
