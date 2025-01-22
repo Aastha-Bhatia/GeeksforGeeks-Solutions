@@ -1,0 +1,18 @@
+class Solution{
+    public int maximumSumSubarray(int[] arr, int k){
+        int left=0;
+        int sum=0;
+        int max=Integer.MIN_VALUE;
+        // calculating the sum of first window pehle hi
+        for(int i=left;i<k;i++){
+            sum+=arr[i];
+        }
+        max=Math.max(sum,max);
+        for(int i=k;i<arr.length;i++){
+            sum=sum-arr[i-k];
+            sum=sum+arr[i];
+            max=Math.max(sum,max);
+        }
+        return max;
+    }
+}
