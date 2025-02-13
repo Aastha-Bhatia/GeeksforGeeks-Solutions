@@ -1,3 +1,4 @@
+// best best best approach using binary search on answers, very easy....
 class Solution{
     public int minTime(int[] arr, int k){
         int low=0;
