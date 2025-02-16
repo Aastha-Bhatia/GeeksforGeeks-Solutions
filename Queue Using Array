@@ -1,0 +1,24 @@
+class MyQueue{
+    int front, rear;
+	int arr[]=new int[100005];
+
+    MyQueue(){
+		front=0;
+		rear=0;
+	}
+	void push(int x){
+	    arr[front]=x;
+	     front++;
+	} 
+    int pop(){
+        if(rear==front){
+            return -1;
+        }
+		rear++;
+		return arr[rear-1];
+	} 
+}
+
+
+
+
