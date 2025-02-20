@@ -1,0 +1,35 @@
+/*The structure of the node of the queue is
+class QueueNode{
+	int data;
+	QueueNode next;
+	QueueNode(int a){
+	    data = a;
+	    next = null;
+	}
+}*/
+class MyQueue{
+    QueueNode front, rear;
+    int size=0;
+	void push(int a){
+	    QueueNode temp=new QueueNode(a);
+	    if(front==null){
+	        front=temp;
+	        rear=temp;
+	    }
+	    else{
+	        rear.next=temp;
+	        size++;
+	    }
+	}
+	int pop(){
+	    if(front==null){
+	        front=null;
+	        rear=null;
+	        
+	    }
+        QueueNode tempp=front;
+        size--;
+        front=front.next;
+        return tempp.data;
+	}
+}
