@@ -1,0 +1,25 @@
+class MyStack{
+    // class StackNode{
+    //     int data;
+    //     StackNode next;
+    //     StackNode(int a) {
+    //         data=a;
+    //         next=null;
+    //     }
+    // }
+    StackNode top;
+    int size=0;
+    
+    void push(int a){
+        StackNode temp=new StackNode(a);
+        temp.next=top;
+        top=temp;
+        size++;
+    }
+    int pop(){
+        StackNode tempp=top;
+        top=top.next;
+        size--;
+        return tempp.data;
+    }
+}
