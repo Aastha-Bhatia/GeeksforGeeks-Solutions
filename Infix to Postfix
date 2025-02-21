@@ -1,0 +1,56 @@
+class Solution{
+    public static int priority(char a){
+        if(a=='^'){
+            return 3;
+        }
+        else if(a=='*' || a=='/'){
+            return 2;
+        }
+        else if(a=='+' || a=='-'){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    public static String infixToPostfix(String s){
+        int i=0;
+        StringBuilder ans=new StringBuilder();
+        Stack<Character> stack=new Stack<>();
+        // till the end of string..
+        while(i!=s.length()){
+            char ch=s.charAt(i);
+            // checking if it is an apphabet...
+            if(ch>='A' && ch<='Z' || ch>='a' && ch<='z' || ch>='0' && ch<='9'){
+                // adding to ans..
+                ans.append(s.charAt(i));
+            }
+            // if it is an opening bracket...
+            else if(ch=='('){
+                stack.push('(');
+            }
+            // if it is a closing bracket...
+            else if(ch==')'){
+                while(!stack.isEmpty() && stack.peek()!='('){
+                    ans.append(stack.pop());
+                }
+                stack.pop();
+            }
+            // checking if it is an operator...
+            else{
+                while(!stack.isEmpty() && priority(ch)<=priority(stack.peek())){
+                    // it means we cannot add....
+                    ans.append(stack.pop());
+                }
+                // after all this:-
+                stack.push(ch);
+            }
+            i++;
+        }
+        // after, transfering all elements from stack to ans...
+        while(!stack.isEmpty()){
+            ans.append(stack.pop());
+        }
+        return ans.toString();
+    }
+}
