@@ -1,0 +1,21 @@
+class Solution{
+    static String postToPre(String post_exp){
+        int i=0;
+        Stack<String>st=new Stack<>();
+        while(i<post_exp.length()){
+            char ch=post_exp.charAt(i);
+            // if operator..
+            if(ch=='-'||ch=='*'||ch=='/'||ch=='+'||ch=='%'){
+                String a=st.pop();
+                String b=st.pop();
+                String c=ch+b+a;
+                st.push(c);
+            }
+            else{
+                st.push(Character.toString(ch));
+            }
+            i++;
+        }
+        return st.peek();
+    }
+}
