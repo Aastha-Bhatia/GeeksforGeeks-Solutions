@@ -1,0 +1,20 @@
+class Solution{
+    static String postToInfix(String exp){
+        int i=0;
+        Stack<String> st=new Stack<>();
+        while(i<exp.length()){
+            char ch=exp.charAt(i);
+            if(ch=='-'||ch=='*'||ch=='/'||ch=='+'||ch=='%'){
+                String a=st.pop();
+                String b=st.pop();
+                String c='('+b+ch+a+')';
+                st.push(c);
+            }
+            else{
+                st.push(Character.toString(ch));
+            }
+            i++;
+        }
+        return st.peek();
+    }
+}
