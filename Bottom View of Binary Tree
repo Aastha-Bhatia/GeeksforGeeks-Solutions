@@ -1,0 +1,33 @@
+class Pair{
+    Node node;
+    int dis;
+    Pair(Node n,int d){
+        node=n;
+        dis=d;
+    }
+}
+class Solution{
+    public ArrayList <Integer> bottomView(Node root){
+        Queue<Pair> q=new LinkedList<>();
+        Map<Integer,Integer>mpp=new TreeMap<>();
+        ArrayList<Integer> ans=new ArrayList<>();
+        q.add(new Pair(root,0));
+        while(!q.isEmpty()){
+            Pair pr=q.poll();
+            // puttinh inside map
+            mpp.put(pr.dis,pr.node.data);
+            // left and right check..
+            if(pr.node.left!=null){
+                q.add(new Pair(pr.node.left,pr.dis-1));
+            }
+            if(pr.node.right!=null){
+                q.add(new Pair(pr.node.right,pr.dis+1));
+            }
+        }
+        // now printing all from the map traversing..
+        for(Map.Entry<Integer,Integer>mapelement:mpp.entrySet()){
+            ans.add(mapelement.getValue());
+        }
+        return ans;
+    }
+}
