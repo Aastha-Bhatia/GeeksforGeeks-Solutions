@@ -1,0 +1,79 @@
+/*********************************************************
+ Following is the TreeNode structure:
+ class TreeNode{
+     int data;
+     TreeNode left;
+     TreeNode right;
+     TreeNode(){
+         this.data=0;
+         this.left=null;
+         this.right=null;
+     }
+     TreeNode(int data){
+         this.data=data;
+         this.left=null;
+         this.right=null;
+     }
+     TreeNode(int data, TreeNode left, TreeNode right){
+         this.data=data;
+         this.left=left;
+         this.right=right;
+     }
+ };
+ ********************************************************/
+import java.util.*;
+public class Solution{
+    public static void inorder(TreeNode root,List<List<Integer>>mainlist,List<Integer>seclist){
+        if(root==null){
+            return;
+        }
+        // inorder- left root right...
+        inorder(root.left,mainlist,seclist);
+        seclist.add(root.data);
+        inorder(root.right,mainlist,seclist);
+    }
+    public static void preorder(TreeNode root,List<List<Integer>>mainlist,List<Integer>seclist){
+        if(root==null){
+            return;
+        }
+        // preorder- root left right...
+        seclist.add(root.data);
+        preorder(root.left,mainlist,seclist);
+        preorder(root.right,mainlist,seclist);
+    }
+    public static void postorder(TreeNode root,List<List<Integer>>mainlist,List<Integer>seclist){
+        if(root==null){
+            return;
+        }
+        // postorder- left right root...
+        postorder(root.left,mainlist,seclist);
+        postorder(root.right,mainlist,seclist);
+        seclist.add(root.data);
+    }
+    public static List<List<Integer>> getTreeTraversal(TreeNode root){
+        List<List<Integer>>mainlist=new ArrayList<>();
+        List<Integer>seclist=new ArrayList<>();
+        inorder(root,mainlist,seclist);
+        for(int i=0;i<seclist.size();i++){
+            System.out.print(seclist.get(i)+" ");
+        }
+        System.out.println();
+        mainlist.add(seclist);
+        seclist.clear();
+        preorder(root,mainlist,seclist);
+        for(int i=0;i<seclist.size();i++){
+            System.out.print(seclist.get(i)+" ");
+        }
+        System.out.println();
+        mainlist.add(seclist);
+        seclist.clear();
+        postorder(root,mainlist,seclist);
+        for(int i=0;i<seclist.size();i++){
+            System.out.print(seclist.get(i)+" ");
+        }
+        System.out.println();
+        mainlist.add(seclist);
+        seclist.clear();
+        return mainlist;
+    }
+}
