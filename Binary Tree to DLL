@@ -1,0 +1,33 @@
+// } Driver Code Ends
+//User function Template for Java
+/* class Node
+class Node{
+	Node left,right;
+	int data;
+	Node(int d){
+		data=d;
+		left=right=null;
+	}
+}*/
+//This function should return head to the DLL
+class Solution{
+    Node dummy=new Node(-1);
+	Node curr=dummy;
+    //Function to convert binary tree to doubly linked list and return it.
+    Node bToDLL(Node root){
+	    // in order trav...
+	    inorder(root);
+	    dummy.right.left=null;
+	    return dummy.right;
+    }
+    public void inorder(Node root){
+        if(root==null){
+            return;
+        }
+        inorder(root.left);
+        curr.right=root;
+        root.left=curr;
+        curr=curr.right;
+        inorder(root.right);
+    }
+}
