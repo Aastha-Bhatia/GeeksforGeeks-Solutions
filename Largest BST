@@ -1,0 +1,39 @@
+// User function Template for Java
+// class Node{ 
+//     int data; 
+//     Node left,right; 
+//     public Node(int d){ 
+//        data=d; 
+//        left=right=null; 
+//     } 
+// }
+class Pair{
+    int size;
+    int min;
+    int max;
+    Pair(int s,int m,int mx){
+        size=s;
+        min=m;
+        max=mx;
+    }
+}
+class Solution{
+    // Return the size of the largest sub-tree which is also a BST
+    static int largestBst(Node root){
+        //post order...
+        return solve(root).size;
+    }
+    public static Pair solve(Node root){
+        if(root==null){
+            return new Pair(0,Integer.MAX_VALUE,Integer.MIN_VALUE);
+        }
+        Pair left=solve(root.left);
+        Pair right=solve(root.right);
+        // if the subtree is valid..
+        if(root.data>left.max && root.data<right.min){
+            return new Pair(left.size+right.size+1, Math.min(root.data,left.min), Math.max(root.data,right.max));
+        }
+        // if it is not valid..
+        return new Pair(Math.max(left.size,right.size),Integer.MIN_VALUE,Integer.MAX_VALUE);
+    }
+}
