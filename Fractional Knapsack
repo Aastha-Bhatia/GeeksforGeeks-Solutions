@@ -1,0 +1,37 @@
+class Pair{
+    int val;
+    int wt;
+    double fr;
+    Pair(int val,int wt){
+        this.val=val;
+        this.wt=wt;
+        this.fr=(double)val/(double)wt;
+    }
+}
+class Solution{
+    // Function to get the maximum total value in the knapsack.
+    double fractionalKnapsack(List<Integer>val,List<Integer>wt,int capacity){
+        int n=val.size();
+        List<Pair> ls=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            ls.add(new Pair(val.get(i),wt.get(i)));
+        }
+        // a pair with all the fractions will be made...
+        Collections.sort(ls,(a,b)->Double.compare(b.fr,a.fr));
+        double sum=0;
+        for(int i=0;i<n;i++){
+            Pair pr=ls.get(i);
+            // we can completely take...
+            if(capacity>=pr.wt){
+                sum+=pr.val;
+                capacity-=pr.wt;
+            }
+            else{
+                sum+=pr.fr*capacity;
+                return sum;
+            }
+        }
+        return sum;
+    }
+}
+
